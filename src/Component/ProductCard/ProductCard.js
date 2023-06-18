@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ProductCard = ({product}) => {
-  console.log(product)
   const {image,productName,specs,shopName,quantity,category,price} = product;
 
    //hover:scale-125 duration-300

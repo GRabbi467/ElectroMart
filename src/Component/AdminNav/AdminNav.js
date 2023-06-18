@@ -12,7 +12,7 @@ const AdminNav = () => {
         </div>
          
         <div className="shop-name text-2xl hidden lg:block">
-            <h1>ABC store</h1>
+            <h1>Store Name </h1>
         </div>
 
         <div className="">
@@ -23,7 +23,7 @@ const AdminNav = () => {
             <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                <img src="#" />
+                <img src="https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
                 </div>
             </label>
             <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">

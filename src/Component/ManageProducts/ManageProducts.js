@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../AuthContext/AuthProvider';
 
 const ManageProducts = () => {
+    const {} = useContext(AuthContext);
+
     return (
         <div>
             <h1>This is product management Page</h1>

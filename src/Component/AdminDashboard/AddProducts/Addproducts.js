@@ -65,7 +65,6 @@ const Addproducts = () => {
         <h1 className='text-emerald-500 text-center text-4xl font-semibold mb-8'>ADD PRODUCTS AS A SHOPER</h1>
         <p>{sucMsg}</p>
         <form className='flex flex-col gap-4 items-center my-4' onSubmit={handleSubmit}>
-        
         <input type="text" name='email' placeholder="Email" className="input input-success w-full max-w-xs"  required/>
         <input type="text" name='shopname' placeholder="Shop/Seller Name" className="input input-success w-full max-w-xs" required />
         <input type="text" name='pName' placeholder="Product Name" className="input input-success w-full max-w-xs" required />
