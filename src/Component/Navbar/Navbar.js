@@ -8,15 +8,11 @@ const Navbar = () => {
     <div className=" w-full navbar bg-stone-900 flex flex-row justify-around">
 
         <div className=" ">
-          <Link className="btn btn-ghost text-white font-mono sm:text-xl text-sm ">Electro Mart</Link>
+          <Link to ='/' className="btn btn-ghost text-white font-mono sm:text-xl text-sm ">Electro Mart</Link>
         </div>
 
-
-        
-            
           <div className="form-control ">
-            <input type="text" placeholder="Search" className="input input-bordered input-primary w-24 md:w-auto lg:w-96"/>
-             
+            <input type="text" placeholder="Search" className="input input-bordered input-primary w-24 md:w-auto lg:w-96"/>   
           </div>
 
           <div className=''>
@@ -46,13 +42,7 @@ const Navbar = () => {
               </div>
             </label>
             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-              <li>
-                <Link className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <li><Link>Settings</Link></li>
+              
               <li><Link>Logout</Link></li>
             </ul>
           </div>

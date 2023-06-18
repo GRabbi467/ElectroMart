@@ -1,21 +1,34 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import Header from '../Header/Header';
+import Navbar from '../Navbar/Navbar';
+import AdminNav from '../AdminNav/AdminNav';
 
 const AdminDash = () => {
     return (
-        <div>
-            <form className='flex flex-col' action="">
-            <input type="text" placeholder="Email" className="input input-ghost w-full max-w-xs" />
-            <input type="text" placeholder="Shop/Seller Name" className="input input-ghost w-full max-w-xs" />
-            <input type="text" placeholder="Product Name" className="input input-ghost w-full max-w-xs" />
-            <select className="select select-bordered w-full max-w-xs">
-                <option>Smart Phone</option>
-                <option>Laptop</option>
-                <option>Smart Watch</option>
-            </select>
-            <input type="text" placeholder="Specs" className="input input-ghost w-full max-w-xs" />
+      <>
+      <Header></Header>
+      <AdminNav></AdminNav>
+    <div className="drawer lg:drawer-open">
+      <input id="dropdown-drawer" type="checkbox" className="drawer-toggle" />
 
-            </form>
-        </div>
+      <div className="drawer-content">
+        <Outlet></Outlet>
+      </div>
+
+      <div className="drawer-side">
+        <label htmlFor="dropdown-drawer" className="drawer-overlay"></label> 
+        <ul className="menu p-4 w-80 h-full bg-base-200  ">
+          <li><Link to = '/dashboard/add-products'>Add Product</Link></li>
+          <li><Link to = '/dashboard/manage-products'>Manage Products</Link></li>
+          <li><Link to = '/dashboard/product-report'>Show Report</Link></li>
+        </ul>
+      </div>
+
+    </div>
+      </>
+      
+
     );
 };
 
