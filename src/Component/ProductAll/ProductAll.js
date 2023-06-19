@@ -14,7 +14,7 @@ const ProductAll = () => {
             })
     },[])
     return (
-            <div className='my-8 ml-16 grid  gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-4'>
+            <div className='my-8 ml-16 grid  gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-5'>
                 {
                 products.map(product => <ProductCard 
                     key={product._id}

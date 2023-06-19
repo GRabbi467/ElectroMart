@@ -5,7 +5,7 @@ const ProductCard = ({product}) => {
 
    //hover:scale-125 duration-300
 return (
-  <div className="card w-96 bg-base-100 shadow-xl">
+  <div className="card w-80 bg-base-100 shadow-none">
   <figure className="">
     <img className="w-64 hover:scale-125 duration-300 rounded-xl" src={image} alt="Shoes"/>
   </figure>
@@ -20,7 +20,7 @@ return (
     <h2 className="card-title">{productName}</h2>
     <p className='text-orange-500 mt-0'> <span className='text-2xl'>৳</span>:{price} TK</p>
     <div className="card-actions">
-      <button className="btn btn-neutral">Add to cart</button>
+      <button className="btn rounded">Add to cart</button>
     </div>
   </div>
 </div>
