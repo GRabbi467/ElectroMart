@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaAngleDoubleRight} from "react-icons/fa";
+import { FaAngleDoubleRight, FaUserAlt} from "react-icons/fa";
+import { AuthContext } from '../AuthContext/AuthProvider';
 
-const AdminNav = () => {
+const AdminNav = (props) => {
+    console.log(props)
+    
+    
+    const {user} = useContext(AuthContext);
+    console.log(user)
+
+    const handleLogOut=()=>{
+        console.log('handle log')
+    }
     return (
     <div className="navbar  w-full bg-slate-200 flex justify-around">
         <div className='lg:hidden'>
@@ -12,7 +22,7 @@ const AdminNav = () => {
         </div>
          
         <div className="shop-name text-2xl hidden lg:block">
-            <h1>Store Name </h1>
+            <h2>{props.shopname}</h2>
         </div>
 
         <div className="">
@@ -23,16 +33,18 @@ const AdminNav = () => {
             <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                <img src="https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+                {
+                    user?.photoURL ? <img src={user?.photoURL} /> : <FaUserAlt className='text-4xl ml-0.5'></FaUserAlt>
+                }
                 </div>
             </label>
             <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                <a className="justify-between">
-                    Profile
+                <a className="justify-between text-green-950">
+                    {user.email}
                 </a>
                 </li>
-                <li><a>Logout</a></li>
+                <li><button className='btn btn-sm btn-error' onClick={handleLogOut}>Logout</button></li>
             </ul>
             </div>
         </div>

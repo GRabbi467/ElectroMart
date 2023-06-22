@@ -1,49 +1,70 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext/AuthProvider';
+import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 
-
-const Login = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+const SignUp = () => {
+    const {user,createUser,googleSignup,logOut} = useContext(AuthContext);
     const [error,setError] = useState('');
 
-    const {user,signIn} = useContext(AuthContext);
     
- 
-    const from = location.state?.from?.pathname || '/';
-
- 
 
     const handleSubmit =e=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        const confirm = form.confirm.value;
 
-       signIn(email,password)
-       .then((userCredential) => {
-        const currentUser = userCredential.user;
-        toast.success('Login Successful')
-        navigate(from,{replace:true}) 
-      })
+        if (password.length < 6) {
+            setError("Your password must be at least 6 characters"); 
+        }
+        else if(password !== confirm){
+            return setError('Password does not matched!')
+        }
+        else if (password.search(/[a-z]/i) < 0) {
+           setError("Your password must contain at least one letter.");
+        }
+        else if (password.search(/[0-9]/) < 0) {
+           setError("Your password must contain at least one digit."); 
+        }
+        else{
+        createUser(email,password)
+        .then((userCredential) => {
+          const currentUser = userCredential.user;
+          toast.success('User Created Sucessfully');
+          console.log(currentUser)
+          form.reset();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorCode,errorMessage);
+        });
 
-      .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage)
-      });
-
+        }
     }
-    
-    
+    //google signup 
+    const handleGooleSignIn =()=>{
+        const provider = new GoogleAuthProvider();
+        googleSignup(provider)
+        .then(result=>{
+            const user = result.user;
+        })
+        .then((error)=>{
+            const errorcode = error.errorCode;
+        })
+    }
 
-
+    
+       
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
             <h1 className="text-3xl font-semibold text-center text-blue-800 uppercase">
-               login
+                Sign Up
             </h1>
             <form className="mt-6" onSubmit={handleSubmit}>
                 <div className="mb-2">
@@ -74,7 +95,20 @@ const Login = () => {
                         required
                     />
                 </div>
-               
+                <div className="mb-2">
+                    <label
+                        for="password"
+                        className="block text-sm font-semibold text-zinc-800"
+                    >
+                       Confirm Password
+                    </label>
+                    <input
+                        type="password"
+                        name='confirm'
+                        className="block w-full px-4 py-2 mt-2 text-blue-800 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        required
+                    />
+                </div>
                 <Link
                     href="#"
                     className="text-xs text-purple-600 hover:underline"
@@ -93,7 +127,13 @@ const Login = () => {
                 <div className="absolute px-5 bg-white">Or</div>
             </div>
             <div className="flex mt-4 gap-x-2">
-                
+                <button
+                    type="button"
+                    onClick={handleGooleSignIn}
+                    className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md  hover:bg-purple-600 hover:text-white  focus:ring-violet-600"    
+                >
+                    <FaGoogle></FaGoogle>
+                </button>
               
                 
             </div>
@@ -101,13 +141,11 @@ const Login = () => {
             <p className="mt-8 text-xs font-light text-center text-zinc-950">
                 {" "}
                 {" "}
-                <Link to ='/signup' className="text-xs font-light text-center text-zinc-950 hover:text-purple-600 hover:underline">Don't have an account?</Link>
+                <Link to ='/login' className="text-xs font-light text-center text-zinc-950 hover:text-purple-600 hover:underline">Already have an account?</Link>
             </p>
         </div>
         </div>
-       
-      
     );
 };
 
-export default Login;
+export default SignUp;

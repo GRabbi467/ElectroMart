@@ -6,6 +6,8 @@ import AdminDash from "../Component/AdminDashboard/AdminDash";
 import Addproducts from "../Component/AdminDashboard/AddProducts/Addproducts";
 import ManageProducts from "../Component/ManageProducts/ManageProducts";
 import ProductReport from "../Component/ProductReport/ProductReport";
+import ProtectedRoute from "../Component/ProtectedRoute/ProtectedRoute";
+import SignUp from "../Component/SignUp/SignUp";
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -19,13 +21,18 @@ export const router = createBrowserRouter([{
             path:'/login',
             element:<Login></Login>
         },
+        {
+            path:'/signup',
+            element:<SignUp/>
+
+        }
     ]
     
     
 },
 {
     path:'/dashboard',
-    element:<AdminDash></AdminDash>,
+    element:<ProtectedRoute><AdminDash></AdminDash></ProtectedRoute>,
     children:[
         
         {

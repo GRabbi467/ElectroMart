@@ -1,7 +1,9 @@
-import React, {useState } from 'react';
+import React, {useContext, useState } from 'react';
+import { AuthContext } from '../../AuthContext/AuthProvider';
 
 
 const Addproducts = () => {
+    const {user} = useContext(AuthContext);
     const imgbbKey = process.env.REACT_APP_imgbb_key;
     const [select,setSelect] = useState('');
     const [sucMsg,setSucMsg] = useState('');
@@ -38,12 +40,12 @@ const Addproducts = () => {
                 shopName:shopname,
                 category: category,
                 productName: pname,
-                qunatity : quantity,
+                quantity : quantity,
                 price : price,
                 image: imgURL,
                 details : details,
             }
-            console.log(ProductDetails)
+            
 
         fetch(`http://localhost:5000/products`,{
         method:'POST',
@@ -65,7 +67,7 @@ const Addproducts = () => {
         <h1 className='text-emerald-500 text-center text-4xl font-semibold mb-8'>ADD PRODUCTS AS A SHOPER</h1>
         <p>{sucMsg}</p>
         <form className='flex flex-col gap-4 items-center my-4' onSubmit={handleSubmit}>
-        <input type="text" name='email' placeholder="Email" className="input input-success w-full max-w-xs"  required/>
+        <input type="text" name='email' placeholder="Email" className="input input-success w-full max-w-xs" disabled defaultValue={user?.email}/>
         <input type="text" name='shopname' placeholder="Shop/Seller Name" className="input input-success w-full max-w-xs" required />
         <input type="text" name='pName' placeholder="Product Name" className="input input-success w-full max-w-xs" required />
         <input type="number" name='quantity' placeholder="Product Qunatity" className="input input-success w-full max-w-xs" required />

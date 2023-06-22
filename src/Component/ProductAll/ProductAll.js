@@ -4,17 +4,19 @@ import ProductCard from '../ProductCard/ProductCard';
 
 const ProductAll = () => {
     const [products,setProducts] = useState([]);
+   
 
     useEffect(()=>{
         fetch('http://localhost:5000/products')
         .then(res => res.json())
         .then(data => 
-            {
-                setProducts(data);
+            { 
+             setProducts(data[0]); 
             })
     },[])
+    
     return (
-            <div className='my-8 ml-16 grid  gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-5'>
+            <div className='my-40 ml-16 grid gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-8'>
                 {
                 products.map(product => <ProductCard 
                     key={product._id}

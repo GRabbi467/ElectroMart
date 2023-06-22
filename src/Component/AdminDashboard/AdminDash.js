@@ -18,9 +18,9 @@ const AdminDash = () => {
       <div className="drawer-side">
         <label htmlFor="dropdown-drawer" className="drawer-overlay"></label> 
         <ul className="menu p-4 w-80 h-full bg-base-200  ">
-          <li><Link to = '/dashboard/add-products'>Add Product</Link></li>
-          <li><Link to = '/dashboard/manage-products'>Manage Products</Link></li>
-          <li><Link to = '/dashboard/product-report'>Show Report</Link></li>
+          <li className='hover:bg-green-200 rounded-md'><Link to = '/dashboard/add-products'>Add Product</Link></li>
+          <li className='hover:bg-green-200'><Link to = '/dashboard/manage-products'>Manage Products</Link></li>
+          <li className='hover:bg-green-200'><Link to = '/dashboard/product-report'>Show Report</Link></li>
         </ul>
       </div>
 
