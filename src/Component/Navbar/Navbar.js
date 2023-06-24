@@ -2,13 +2,16 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthContext/AuthProvider';
 import { FaUserAlt } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 
 const Navbar = () => {
- const {user,logOut} = useContext(AuthContext);
+ const {user,logOut,loading} = useContext(AuthContext);
+
 
     const handleLogOut=()=>{
       logOut()
+      toast.success('User Logged Out')
     }
 
     return (
@@ -49,7 +52,7 @@ const Navbar = () => {
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
                 {
-                    user?.photoURL ? <img src={user?.photoURL} /> : <FaUserAlt className='text-4xl ml-0.5 text-white'></FaUserAlt>
+                    user?.photoURL ? <img src={user?.photoURL} alt='userphoto' /> : <FaUserAlt className='text-4xl ml-0.5 text-white'></FaUserAlt>
                 }
                 </div>
             </label>

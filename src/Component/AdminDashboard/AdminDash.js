@@ -12,7 +12,8 @@ const AdminDash = () => {
       <input id="dropdown-drawer" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-content">
-        <Outlet></Outlet>
+        <Outlet>
+        </Outlet>
       </div>
 
       <div className="drawer-side">

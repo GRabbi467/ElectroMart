@@ -1,15 +1,30 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
-    const {user,createUser,googleSignup,logOut} = useContext(AuthContext);
+    const {user,createUser,googleSignup} = useContext(AuthContext);
     const [error,setError] = useState('');
-
-    
+    const navigate = useNavigate();
+  
+    const saveUser=(email)=>{
+        const user = {email : email}
+        fetch('http://localhost:5000/users',{
+            method:"POST",
+            headers:{
+                'content-type':"application/json"
+            },
+            body: JSON.stringify(user)
+        })
+       .then(res => res.json())
+       .then(data =>{
+        console.log('saveuser',data)
+       
+       })
+    }
 
     const handleSubmit =e=>{
         e.preventDefault();
@@ -35,8 +50,9 @@ const SignUp = () => {
         .then((userCredential) => {
           const currentUser = userCredential.user;
           toast.success('User Created Sucessfully');
-          console.log(currentUser)
+          saveUser(currentUser.email)
           form.reset();
+          navigate('/')
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -52,11 +68,14 @@ const SignUp = () => {
         googleSignup(provider)
         .then(result=>{
             const user = result.user;
+           
         })
-        .then((error)=>{
+        .catch((error)=>{
             const errorcode = error.errorCode;
         })
     }
+
+    
 
     
        
@@ -119,7 +138,7 @@ const SignUp = () => {
                 <div className="mt-6">
                     <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform
                      bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-                        Login
+                        Sign Up
                     </button>
                 </div>
             </form>

@@ -1,12 +1,13 @@
 import React, {useContext, useState } from 'react';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 
 const Addproducts = () => {
     const {user} = useContext(AuthContext);
     const imgbbKey = process.env.REACT_APP_imgbb_key;
     const [select,setSelect] = useState('');
-    const [sucMsg,setSucMsg] = useState('');
+
     const  handleSubmit= (e)=>{
         e.preventDefault();
         
@@ -56,7 +57,7 @@ const Addproducts = () => {
        })
        .then(res => res.json())
        .then(data =>{
-       return (data.acknowledged ? setSucMsg('Product Added Successfully') :setSucMsg('Product is not added'))
+       return (data.acknowledged ? toast.success("Product Added Successfully") : toast.error("Product is not added"))
        })
        form.reset();  
         })
@@ -65,7 +66,7 @@ const Addproducts = () => {
     return (
         <div className='my-8'>
         <h1 className='text-emerald-500 text-center text-4xl font-semibold mb-8'>ADD PRODUCTS AS A SHOPER</h1>
-        <p>{sucMsg}</p>
+  
         <form className='flex flex-col gap-4 items-center my-4' onSubmit={handleSubmit}>
         <input type="text" name='email' placeholder="Email" className="input input-success w-full max-w-xs" disabled defaultValue={user?.email}/>
         <input type="text" name='shopname' placeholder="Shop/Seller Name" className="input input-success w-full max-w-xs" required />
@@ -79,6 +80,7 @@ const Addproducts = () => {
             <option>Laptop</option>
             <option>Smart Watch</option>
             <option>Smart TV</option>
+            <option>Auto Mobiles</option>
             <option>Others</option>
         </select>
 
