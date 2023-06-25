@@ -8,6 +8,7 @@ import ManageProducts from "../Component/ManageProducts/ManageProducts";
 import ProductReport from "../Component/ProductReport/ProductReport";
 import ProtectedRoute from "../Component/ProtectedRoute/ProtectedRoute";
 import SignUp from "../Component/SignUp/SignUp";
+import ProductDetails from "../Component/ProductDetails/ProductDetails";
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([{
             path:'/signup',
             element:<SignUp/>
 
+        },
+        {
+            path:'/:id',
+            element:<ProductDetails/>,
+            loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
         }
     ]
     
