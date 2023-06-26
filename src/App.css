@@ -3,3 +3,27 @@
 }
 
 
+@media only screen and (max-width: 414px) {
+  .product-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+.addToCart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    column-gap: 4px;
+} 
+
+}
+@media only screen and (max-width: 1024px){
+  
+
+}
+
+
+
+

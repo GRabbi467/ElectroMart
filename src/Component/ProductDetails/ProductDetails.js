@@ -1,38 +1,27 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData,useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useState } from "react";
-import ReactImageMagnify from "react-image-magnify";
+import { addToDb } from "../LocalStorage/LocalStorage";
+import { toast } from "react-hot-toast";
 
 const ProductDetails = () => {
   const productInfo = useLoaderData();
-  const { productName, image, price, details, deatils, quantity } =
-    productInfo[0];
+  const {_id, productName, image, price, details, deatils, quantity } = productInfo[0];
   const Overviews = (deatils || details).slice(0, 200).match(/.{1,30}/g);
   const [selectedItems, setSelectedItems] = useState(1);
   
+
+
+
+
+
   return (
     <>
-      <div className="image-zoom">
-        <ReactImageMagnify
-          {...{
-            smallImage: {
-              alt: "Wristwatch by Ted Baker London",
-              isFluidWidth: true,
-              src: { image },
-            },
-            largeImage: {
-              src: { image },
-              width: 1200,
-              height: 1800,
-            },
-          }}
-        />
-      </div>
-      <div className="card lg:card-side bg-base-100 shadow-none w-full">
-        <figure className="w-1/2">
-          <img src={image} alt="Album" className="w-96" />
+      <div className="card lg:card-side bg-base-100 card-normal shadow-none w-full product-img">
+        <figure className="w-1/2 ">
+          <img  src={image} alt="Album" className="w-96 hover:scale-150 duration-300 rounded-xl cursor-pointer" />
         </figure>
-        <div className="card-body p-16 ">
+        <div className="card-body">
           <h2 className="card-title text-3xl">{productName}</h2>
           <div className="rating rating-md">
             <input
@@ -83,6 +72,7 @@ const ProductDetails = () => {
             </p>
           </div>
 
+          <div className="addToCart">
           <div className="mt-8">
             <div className="flex gap-x-4 ">
               <button
@@ -103,10 +93,14 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="card-actions justify-start">
-            <button className="w-36 bg-blue-500 hover:bg-blue-700 hover:scale-110 duration-300 text-white rounded-full px-4 py-1.5 font-medium uppercase ">
+          <div className="card-actions">
+            <button className="w-36 bg-blue-500 hover:bg-blue-700 hover:scale-110 duration-300 text-white rounded-full px-4 py-1.5 mt-4 font-medium uppercase "
+            onClick= {()=>{addToDb(_id,selectedItems);toast.success('Product Added to Cart')}}
+            >
               Add to cart
+
             </button>
+          </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import AdminNav from '../AdminNav/AdminNav';
 
 const AdminDash = () => {
+  
     return (
       <>
       <Header></Header>
@@ -11,9 +12,8 @@ const AdminDash = () => {
     <div className="drawer lg:drawer-open">
       <input id="dropdown-drawer" type="checkbox" className="drawer-toggle" />
 
-      <div className="drawer-content">
-        <Outlet>
-        </Outlet>
+      <div className="drawer-content  overflow-x-scroll">
+        <Outlet/>
       </div>
 
       <div className="drawer-side">

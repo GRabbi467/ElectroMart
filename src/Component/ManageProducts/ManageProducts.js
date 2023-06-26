@@ -7,6 +7,7 @@ import { LuEdit } from "react-icons/lu";
 
 const ManageProducts = () => {
     const {user} = useContext(AuthContext);
+    
 
     const url = `http://localhost:5000/products?email=${user?.email}`;
 
@@ -18,6 +19,10 @@ const ManageProducts = () => {
             return data[1];
         },     
     })
+ 
+    
+
+     
 
     const handleDelete=(id,productname)=>{
      const consent =  window.confirm(`Are you want to delete ${productname}?`)
@@ -68,11 +73,11 @@ const ManageProducts = () => {
       })
     }
     
-    return (
-        
-     <div className="overflow-x-auto">
+    return (    
+   
           
-  <table className="table">
+  <div className="">
+  <table className="table w-full ">
     <thead>
       <tr className="text-xl">
         <th>Serial</th>
@@ -83,13 +88,14 @@ const ManageProducts = () => {
         <th>Delete</th>
       </tr>
     </thead>
+    
     <tbody>
       {
         products.map((product,idx) =>
             <tr className="bg-base-200 text-md ">
         <th>{idx+1}</th>
         <td>{product.productName}</td>
-        <td>{product.quantity}<LuEdit onClick={()=>handleEditQuantity(product._id)} className='text-lg  text-blue-900 hover:border-2 border-blue-400'/></td> 
+        <td>{product.quantity}<LuEdit onClick={()=>handleEditQuantity(product._id)} className='text-lg inline ml-2 text-blue-900 hover:border-2 border-blue-400'/></td> 
         <td className='flex'>{product.price} TK<AiOutlineEdit className='text-xl ml-4 text-blue-900 hover:border-2 border-blue-400' 
         onClick={()=>handleEditPrice(product._id)}/></td>
         <td>{product.category}</td>
@@ -99,8 +105,8 @@ const ManageProducts = () => {
       }
     </tbody>
   </table>
- 
-</div>
+  </div>
+
     );
 };
 

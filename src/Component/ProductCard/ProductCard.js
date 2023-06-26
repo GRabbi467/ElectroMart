@@ -9,7 +9,7 @@ const cartPage=(id)=>{
 }
    
 return (
-  <div className="card w-48 bg-base-100 drop-shadow-md rounded-none hover:">
+  <div className="card  bg-base-100 drop-shadow-md rounded-none">
   <figure onClick={()=>cartPage(_id)} className="">
     <img className="w-64 hover:scale-125 duration-300 rounded-xl" src={image} alt="Shoes"/>
   </figure>
