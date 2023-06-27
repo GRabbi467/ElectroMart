@@ -115,13 +115,13 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link className="justify-between mb-3 text-lg text-white bg-blue-600">
+                    <Link className="justify-between mb-3 text-md text-white bg-blue-600">
                       {user.email}
                     </Link>
                   </li>
                   <li>
                     <button
-                      className="btn btn-sm btn-error"
+                      className="btn btn-sm btn-block btn-error"
                       onClick={handleLogOut}
                     >
                       Logout

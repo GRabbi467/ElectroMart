@@ -5,12 +5,8 @@ const ProductReport = () => {
    
     return (
        <>
-    <FaAlignLeft className="btn" onClick={()=>window.editModal.showModal()}>open modal</FaAlignLeft>
-    <dialog id="editModal" className="modal">
-    <form method="dialog">
-       <input className='w-48' type="number" name="edit"/>
-    </form>
-    </dialog>
+       <h1>Total Products Sold:</h1>
+       <h1>Total Revenue Generated :</h1>
        </>
     );
 };

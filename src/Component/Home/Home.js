@@ -1,11 +1,12 @@
 import React from 'react';
-import ProductCard from '../ProductCard/ProductCard';
 import ProductAll from '../ProductAll/ProductAll';
+import Banner from '../Banner/Banner';
 
 
 const Home = () => {
     return (
         <div>
+            <Banner></Banner>
            <ProductAll></ProductAll>
         </div>
     );
