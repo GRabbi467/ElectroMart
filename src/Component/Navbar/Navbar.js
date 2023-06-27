@@ -1,21 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthContext/AuthProvider';
-import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { getStoredCart } from '../LocalStorage/LocalStorage';
+import { FaUserAlt } from 'react-icons/fa';
 
 
 const Navbar = () => {
  const {user,logOut,loading} = useContext(AuthContext);
- const [selItems,setSelItems] = useState(0)
-  
+ const [selItems,setSelItems] = useState(0);
+ const [search,setSearch] = useState('');
+
   
   useEffect(()=>{
   const storedCart = getStoredCart();
   const totalItems = Object.keys(storedCart).length;
   setSelItems(totalItems)
-    },[selItems]);
+  },[selItems]);
+
   
  
     const handleLogOut=()=>{
@@ -23,9 +25,15 @@ const Navbar = () => {
       toast.success('User Logged Out')
     }
 
+    const handleSearch=(e)=>{
+       e.preventDefault();
+       const searchData = e.target.search.value;
+       console.log(searchData)
+    }
+
     return (
       <div
-        className=" w-full navbar bg-stone-900 flex flex-row justify-around"
+        className=" w-full navbar bg-zinc-950 flex flex-row justify-around"
         id="userNav"
       >
         <div className=" ">
@@ -37,22 +45,16 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="form-control ">
+        <form onSubmit={handleSearch} className="form-control">
           <input
             type="text"
+            name='search'
             placeholder="Search..."
             className="input input-bordered input-accent input-sm w-24 sm:block md:w-auto lg:w-96 max-w-xs"
           />
-        </div>
+        </form>
 
-          {/* <div className="form-control">
-            <div className="input-group">
-              <input type="text" placeholder="Search…" className="input input-bordered" />
-              <button className="btn btn-square">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-              </button>
-            </div>
-          </div> */}
+        
 
 
         <div className="">

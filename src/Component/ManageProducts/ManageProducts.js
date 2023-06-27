@@ -16,7 +16,7 @@ const ManageProducts = () => {
         queryFn:async ()=>{
             const res = await fetch(url)
             const data = await res.json();
-            return data[1];
+            return data.productsbyEmail;
         },     
     })
  
@@ -33,7 +33,7 @@ const ManageProducts = () => {
       })
       .then(res => res.json())
       .then(data=>{
-        console.log(data)
+       
       })
       }
     }
@@ -51,7 +51,7 @@ const ManageProducts = () => {
       })
       .then(res => res.json())
       .then(data=>{
-        console.log(data)
+       
       })
     }
 
@@ -69,7 +69,7 @@ const ManageProducts = () => {
       })
       .then(res => res.json())
       .then(data=>{
-        console.log(data)
+       
       })
     }
     

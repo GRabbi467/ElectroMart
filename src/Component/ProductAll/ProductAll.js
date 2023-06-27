@@ -13,8 +13,8 @@ const ProductAll = () => {
         .then(res => res.json())
         .then(data => 
             { 
-             setProducts(data[0]);
-             setCount(data[2]) 
+             setProducts(data.allProducts);
+             setCount(data.count) 
             })
     },[page,size])
     const pages = Math.ceil( count / size);
