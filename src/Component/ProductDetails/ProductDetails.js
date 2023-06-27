@@ -1,4 +1,4 @@
-import { useLoaderData,useNavigate } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import { addToDb } from "../LocalStorage/LocalStorage";

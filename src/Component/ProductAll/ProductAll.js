@@ -21,7 +21,7 @@ const ProductAll = () => {
     
     return (
         <>
-        <h1 className='text-2xl font-bold border-b-4 border-black ml-4 '><span className='bg-black text-white p-2'>All Products</span></h1>
+        <h1 className='text-2xl font-bold border-b-4 border-black mt-8'><span className='bg-black text-white p-2 rounded-t-2xl'>All Products</span></h1>
         <div className='grid gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-7'>
                 {
                 products.map(product => <ProductCard 

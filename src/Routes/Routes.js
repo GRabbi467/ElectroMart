@@ -12,6 +12,7 @@ import ProductDetails from "../Component/ProductDetails/ProductDetails";
 import Order from "../Component/Order/Order";
 import OrderCard from "../Component/OrderCard/OrderCard";
 import ProceedOrder from "../Component/ProceedOrder/ProceedOrder";
+import CategoryDataCard from "../Component/CategoryDataCard/CategoryDataCard";
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -42,7 +43,11 @@ export const router = createBrowserRouter([{
         {
             path:'/orders/proceed-order',
             element :<ProtectedRoute><ProceedOrder/></ProtectedRoute>
-        }
+        },
+        // {
+        //     path:'/categories/category',
+        //     element:<CategoryDataCard/>
+        // }
     ]
     
     
