@@ -31,6 +31,8 @@ const Navbar = () => {
        console.log(searchData)
     }
 
+
+    
     return (
       <div
         className=" w-full navbar bg-zinc-950 flex flex-row justify-around"

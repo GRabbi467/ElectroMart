@@ -21,8 +21,8 @@ const ProductAll = () => {
     
     return (
         <>
-        <h1 className='text-2xl font-bold border-b-4 border-black mt-8'><span className='bg-black text-white p-2 rounded-t-2xl'>All Products</span></h1>
-        <div className='grid gap-y-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-7'>
+        <h1 className='text-2xl font-bold border-b-4 border-black mt-8'><span className='bg-black text-white p-2 pb-1 rounded-tr-2xl'>All Products</span></h1>
+        <div className='grid gap-y-4 mt-16 grid-cols-1 md:grid-cols-3 xl:grid-cols-7'>
                 {
                 products.map(product => <ProductCard 
                     key={product._id}
@@ -44,8 +44,8 @@ const ProductAll = () => {
              <option value="5">5</option>
              <option value="7" selected>7</option>
              <option value="10">10</option>
-             <option value="14">15</option>
-             <option value="21">20</option>
+             <option value="14">14</option>
+             <option value="21">21</option>
              </select>
            </div>
         </>

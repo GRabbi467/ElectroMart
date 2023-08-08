@@ -23,9 +23,11 @@ const bannerData = [
         id: 3,
         next: 1
     },
+    
 ]
 
 const Banner = () => {
+    
     return (
         <div className="carousel w-full h-630px">
             {
@@ -36,6 +38,7 @@ const Banner = () => {
             }
             
         </div>
+        
     );
 };
 

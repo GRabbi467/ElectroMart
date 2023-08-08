@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import phone from '../Assets/banner/cell-phone.png';
 import laptop from '../Assets/banner/laptop.png';
 import smartWatch from '../Assets/banner/smart-watch.png';
@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const ProductCategories = () => {
     return (
         <>
-        <h1 className='text-2xl font-bold border-b-4 border-black mt-8'><span className='bg-black text-white p-2 pb-0 rounded-t-2xl'>Top Categories</span></h1>
+        <h1 className='text-2xl font-bold border-b-4 border-black mt-8'><span className='bg-black text-white p-2 pb-1 rounded-tr-2xl'>Top Categories</span></h1>
         <div className='flex flex-col lg:flex-row gap-x-20 justify-center items-center p-4 m-4'> 
        
         <div>
