@@ -22,10 +22,11 @@ const ProductCategories = () => {
           </div>
           <div>
           <Link to='category/Smart Watch'><img  src={smartWatch} className='w-36 lg:w-24' alt="smart-watch" /></Link>
+          <p className='text-center'>Smart Watch</p>
           </div>
           <div>
           <Link to ='category/Smart TV'><img src={tv} className='w-36 lg:w-24' alt="television" /></Link>
-          <p className='text-center'>Television</p>
+          <p className='text-center'>Smart TV</p>
           </div>
           {/* <div>
           <img src={more} className='w-36 lg:w-24' alt="others" />
