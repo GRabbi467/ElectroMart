@@ -12,7 +12,7 @@ const SignUp = () => {
   
     const saveUser=(email)=>{
         const user = {email : email}
-        fetch('http://localhost:5000/users',{
+        fetch('https://electromart-server2.onrender.com/users',{
             method:"POST",
             headers:{
                 'content-type':"application/json"

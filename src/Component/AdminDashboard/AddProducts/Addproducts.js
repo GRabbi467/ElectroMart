@@ -48,7 +48,7 @@ const Addproducts = () => {
             }
             
 
-        fetch(`http://localhost:5000/products`,{
+        fetch(`https://electromart-server2.onrender.com/products`,{
         method:'POST',
         headers:{
             'content-type' : 'application/json',

@@ -9,7 +9,7 @@ const ManageProducts = () => {
     const {user} = useContext(AuthContext);
     
 
-    const url = `http://localhost:5000/products?email=${user?.email}`;
+    const url = `https://electromart-server2.onrender.com/products?email=${user?.email}`;
 
     const {data: products =[], refetch} = useQuery({
         queryKey:['products',user?.email],
@@ -28,7 +28,7 @@ const ManageProducts = () => {
      const consent =  window.confirm(`Are you want to delete ${productname}?`)
  
       if(consent){
-        fetch(`http://localhost:5000/products/${id}`,{
+        fetch(`https://electromart-server2.onrender.com/products/${id}`,{
         method:"DELETE"
       })
       .then(res => res.json())
@@ -42,7 +42,7 @@ const ManageProducts = () => {
       var num = prompt("Enter Updated Price :");
       const Updatedprice = {price : num}
       if(num >0)
-      fetch(`http://localhost:5000/products/${id}`,{
+      fetch(`https://electromart-server2.onrender.com/products/${id}`,{
         method:'PATCH',
         headers:{
           'content-type':'application/json'
@@ -60,7 +60,7 @@ const ManageProducts = () => {
       var num = prompt("Enter Updated Quantity:");
       const updataedQuantity = {quantity:num}
       if(num >0)
-      fetch(`http://localhost:5000/products/${id}`,{
+      fetch(`https://electromart-server2.onrender.com/products/${id}`,{
         method:'PATCH',
         headers:{
           'content-type':'application/json'

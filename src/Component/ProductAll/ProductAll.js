@@ -5,11 +5,11 @@ import ProductCard from '../ProductCard/ProductCard';
 const ProductAll = () => {
     const [products,setProducts] = useState([]);
     const [page,setPage] = useState(0);
-    const [size,setSize] = useState(5);
+    const [size,setSize] = useState(7);
     const [count,setCount] = useState(0);
    
     useEffect(()=>{
-        fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
+        fetch(`https://electromart-server2.onrender.com/products?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => 
             { 
@@ -41,11 +41,11 @@ const ProductAll = () => {
                </button> )
              }
              <select onChange={event => setSize(event.target.value)}>
-             <option value="5" selected>5</option>
-             <option value="7">7</option>
+             <option value="5">5</option>
+             <option value="7" selected>7</option>
              <option value="10">10</option>
-             <option value="15">15</option>
-             <option value="20">20</option>
+             <option value="14">15</option>
+             <option value="21">20</option>
              </select>
            </div>
         </>

@@ -19,7 +19,7 @@ const Order = () => {
       const abortController = new AbortController();
       const storedCart = getStoredCart()
       const cartKeys = Object.keys(storedCart);
-        fetch('http://localhost:5000/orders',{
+        fetch('https://electromart-server2.onrender.com/orders',{
           method:'POST',
           headers:{
             'content-type' : 'application/json'

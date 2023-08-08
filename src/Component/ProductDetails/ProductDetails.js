@@ -67,7 +67,7 @@ const ProductDetails = () => {
               {quantity > 0 ? (
                 `${quantity} items left`
               ) : (
-                <span className="text-red-600">"Not Available</span>
+                <span className="text-red-600">Not Available</span>
               )}
             </p>
           </div>

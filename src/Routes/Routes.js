@@ -10,9 +10,8 @@ import ProtectedRoute from "../Component/ProtectedRoute/ProtectedRoute";
 import SignUp from "../Component/SignUp/SignUp";
 import ProductDetails from "../Component/ProductDetails/ProductDetails";
 import Order from "../Component/Order/Order";
-import OrderCard from "../Component/OrderCard/OrderCard";
 import ProceedOrder from "../Component/ProceedOrder/ProceedOrder";
-import CategoryDataCard from "../Component/CategoryDataCard/CategoryDataCard";
+import SmartPhone from "../Component/Categories/SmartPhone";
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -34,7 +33,7 @@ export const router = createBrowserRouter([{
         {
             path:'/:id',
             element:<ProductDetails/>,
-            loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+            loader:({params})=>fetch(`https://electromart-server2.onrender.com/products/${params.id}`)
         },
         {
             path:'/orders',
@@ -44,10 +43,11 @@ export const router = createBrowserRouter([{
             path:'/orders/proceed-order',
             element :<ProtectedRoute><ProceedOrder/></ProtectedRoute>
         },
-        // {
-        //     path:'/categories/category',
-        //     element:<CategoryDataCard/>
-        // }
+        {
+            path:'/category/:category',
+            element:<SmartPhone></SmartPhone>,
+            //loader:({params})=>fetch(`http://localhost:5000/products/${params.category}`)
+        }
     ]
     
     
