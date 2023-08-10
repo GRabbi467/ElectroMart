@@ -7,7 +7,7 @@ const SmartPhone = () => {
     const [products,setProducts] = useState([]);
 
 useEffect(()=>{
-    fetch(`http://localhost:5000/category/:category?category=${category}`)
+    fetch(`https://electromart-server2.onrender.com/category/:category?category=${category}`)
     .then(res => res.json())
     .then( data =>{
         console.log(data)

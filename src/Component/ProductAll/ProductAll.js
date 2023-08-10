@@ -9,7 +9,7 @@ const ProductAll = () => {
     const [count,setCount] = useState(0);
    
     useEffect(()=>{
-        fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
+        fetch(`https://electromart-server2.onrender.com/products?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => 
             { 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { AuthContext } from "../AuthContext/AuthProvider";
 import { toast } from "react-hot-toast";
 import { getStoredCart } from "../LocalStorage/LocalStorage";
@@ -11,8 +11,7 @@ const Navbar = () => {
   const { user, logOut} = useContext(AuthContext);
   const [selItems, setSelItems] = useState(0);
   const [searchProduct,setSearchProduct] = useState([]);
-  console.log(searchProduct);
-  
+  const navigate = useNavigate();
  const boxRef = useRef(null);
   //update the cart from local host
   useEffect(() => {
@@ -39,10 +38,9 @@ const Navbar = () => {
 //search func.
   const handleSearch = (e) => {
     e.preventDefault(); 
-    console.log(e.target.search.value)
     if(e.target.search.value === '') return;
    try {
-    fetch(`http://localhost:5000/products?search=${e.target.search.value}`)
+    fetch(`https://electromart-server2.onrender.com/products?search=${e.target.search.value}`)
     .then(res => res.json())
     .then(data=>{
       setSearchProduct(data.searchRes);
@@ -52,6 +50,10 @@ const Navbar = () => {
    }
   };
 
+  const cartPage=(id)=>{
+   navigate(`/${id}`)
+   //e.reset();
+   }
 
   return (
     <div
@@ -93,14 +95,14 @@ const Navbar = () => {
           type="text"
           name="search"
         />
-        <div ref={boxRef} className="absolute top-11 z-50 w-full max-h-[50vh] float bg-white border rounded-md overflow-y-scroll">
+        <div ref={boxRef} className="absolute top-11 z-50 w-56 lg:w-full max-h-[50vh] float bg-white border rounded-md overflow-y-scroll">
         { searchProduct.length &&
-          searchProduct.map(e=><div className="flex gap-x-4" key={e._id}> 
+          searchProduct.map(e=><div className="flex gap-x-4 border border-b-1" key={e._id}> 
            <div>
            <img src={e.image} alt="product img" className="w-16"></img>
            </div>
             <div>
-              <span className="text-blue-700">{e.productName}</span>
+              <span onClick={()=>cartPage(e._id)} className="text-blue-700 hover:underline decoration-blue-800">{e.productName}</span>
               <p className="text-slate-950 font-semibold"> Price: {e.price} Tk</p>
             </div>
           </div>)
