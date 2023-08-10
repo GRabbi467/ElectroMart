@@ -12,6 +12,7 @@ import ProductDetails from "../Component/ProductDetails/ProductDetails";
 import Order from "../Component/Order/Order";
 import ProceedOrder from "../Component/ProceedOrder/ProceedOrder";
 import SmartPhone from "../Component/Categories/SmartPhone";
+import SearchFloat from "../Search Float/SearchFloat";
 
 export const router = createBrowserRouter([{
     path:'/',
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([{
             path:'/category/:category',
             element:<SmartPhone></SmartPhone>,
             //loader:({params})=>fetch(`http://localhost:5000/products/${params.category}`)
+        },
+        {
+            path:'/search-results',
+            element:<SearchFloat/>
         }
     ]
     

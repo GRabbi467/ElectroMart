@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
-    const {user,createUser,googleSignup} = useContext(AuthContext);
+    const {createUser,googleSignup} = useContext(AuthContext);
     const [error,setError] = useState('');
     const navigate = useNavigate();
   
@@ -75,9 +75,6 @@ const SignUp = () => {
         })
     }
 
-    
-
-    
        
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">

@@ -1,32 +1,57 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link} from "react-router-dom";
 import { AuthContext } from "../AuthContext/AuthProvider";
 import { toast } from "react-hot-toast";
 import { getStoredCart } from "../LocalStorage/LocalStorage";
 import { FaUserAlt ,FaUserCircle,FaSearch} from "react-icons/fa";
 import icon from "../Assets/brandsLogo/E.png";
 
-const Navbar = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
-  const [selItems, setSelItems] = useState(0);
-  const [search, setSearch] = useState("");
 
+const Navbar = () => {
+  const { user, logOut} = useContext(AuthContext);
+  const [selItems, setSelItems] = useState(0);
+  const [searchProduct,setSearchProduct] = useState([]);
+  console.log(searchProduct);
+  
+ const boxRef = useRef(null);
+  //update the cart from local host
   useEffect(() => {
     const storedCart = getStoredCart();
     const totalItems = Object.keys(storedCart).length;
     setSelItems(totalItems);
   }, [selItems]);
+  
+ useEffect(()=>{
+ if(searchProduct.length){
+  boxRef.current.classList.remove('float');
+ }
+ else{
+  boxRef.current.classList.add('float');
+ }
+ },[searchProduct])
 
+//logout button func.
   const handleLogOut = () => {
     logOut();
     toast.success("User Logged Out");
   };
 
+//search func.
   const handleSearch = (e) => {
-    e.preventDefault();
-    const searchData = e.target.search.value;
-    console.log(searchData);
+    e.preventDefault(); 
+    console.log(e.target.search.value)
+    if(e.target.search.value === '') return;
+   try {
+    fetch(`http://localhost:5000/products?search=${e.target.search.value}`)
+    .then(res => res.json())
+    .then(data=>{
+      setSearchProduct(data.searchRes);
+    })
+   } catch (error) {
+    //console.log(error.message)
+   }
   };
+
 
   return (
     <div
@@ -53,27 +78,35 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* <form onSubmit={handleSearch} className="form-control">
-          <input
-            type="text"
-            name='search'
-            placeholder="Search..."
-            className="input   input-sm w-24 sm:block w-44 md:w-auto lg:w-96 max-w-xs"
-          />
-        </form> */}
-
+      
      <div className="justify-center">
      <label className="relative block">
-        <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <span className="absolute  z-50 inset-y-0 left-0 flex items-center pl-2">
           <FaSearch className="h-5 w-5 text-black"></FaSearch>
         </span>
-        <input
+       <form onSubmit={handleSearch} className="form-control relative">
+       <input 
+          onChange={(e)=>e.target.value === '' && setSearchProduct([])}
           className="placeholder:italic placeholder:text-slate-400 block bg-white w-40 lg:w-96 border border-slate-300
            rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-400 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-          placeholder="Search..."
+          placeholder="Search Products..."
           type="text"
           name="search"
         />
+        <div ref={boxRef} className="absolute top-11 z-50 w-full max-h-[50vh] float bg-white border rounded-md overflow-y-scroll">
+        { searchProduct.length &&
+          searchProduct.map(e=><div className="flex gap-x-4" key={e._id}> 
+           <div>
+           <img src={e.image} alt="product img" className="w-16"></img>
+           </div>
+            <div>
+              <span className="text-blue-700">{e.productName}</span>
+              <p className="text-slate-950 font-semibold"> Price: {e.price} Tk</p>
+            </div>
+          </div>)
+        }
+        </div>
+       </form>
       </label>
 
      </div>
@@ -124,9 +157,10 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   {user?.photoURL ? (
                     <img src={user?.photoURL} alt="userphoto" />
-                  ) : (
+                  ) 
+                  : 
+                  (
                     <FaUserAlt className="text-3xl ml-0.5 text-white "></FaUserAlt>
-                    //<FaUserCircle className="text-white text-2xl inline-block ml-2"></FaUserCircle>
                   )}
                 </div>
               </label>
